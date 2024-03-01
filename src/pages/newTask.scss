@@ -1,0 +1,44 @@
+@charset "utf-8";
+$colors: #555555, #ff3333;
+
+.new-task {
+  width: 1000px;
+  margin: 0 auto;
+
+  .new-task-form {
+    color: nth($colors, 1);
+
+    .new-task-select-list,
+    .new-task-title,
+    .new-task-detail {
+      width: 300px;
+      margin-bottom: 25px;
+    }
+
+    .new-task-detail {
+      height: 200px;
+    }
+
+    .new-task-button {
+      background-color: #242f9b;
+      color: #ffffff;
+      width: 80px;
+      height: 40px;
+      border-radius: 5px;
+    }
+  }
+
+  .error-message {
+    color: nth($colors, 2);
+  }
+}
+
+
+
+
+
+
+
+
+
+
