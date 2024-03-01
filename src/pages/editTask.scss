@@ -7,13 +7,13 @@ $colors: #555555, #ff3333, #ffffff;
 
   .edit-task-form {
     color: nth($colors, 1);
-  
+
     .edit-task-title,
     .edit-task-detail {
       width: 300px;
       margin-bottom: 25px;
     }
-  
+
     .delete-task-button {
       color: nth($colors, 2);
       border: solid 1px #ff3333;
@@ -22,7 +22,7 @@ $colors: #555555, #ff3333, #ffffff;
       margin: 25px 5px;
       border-radius: 5px;
     }
-    
+
     .edit-task-button {
       background-color: #242f9b;
       color: nth($colors, 3);
@@ -30,7 +30,6 @@ $colors: #555555, #ff3333, #ffffff;
       height: 40px;
       border-radius: 5px;
     }
-    
   }
 
   .error-message {

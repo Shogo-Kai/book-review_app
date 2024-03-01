@@ -7,12 +7,12 @@ $colors: #555555, #ffffff;
 
   .new-list-form {
     color: nth($colors, 1);
-  
+
     .new-list-title {
       width: 300px;
       margin-bottom: 25px;
     }
-    
+
     .new-list-button {
       background-color: #242f9b;
       color: nth($colors, 2);

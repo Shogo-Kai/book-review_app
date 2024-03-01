@@ -8,7 +8,7 @@ $colors: #ffffff, #ff3333, #000000;
   .list-header {
     display: flex;
     justify-content: space-between;
-  
+
     .list-menu {
       text-align: right;
     }
@@ -18,7 +18,7 @@ $colors: #ffffff, #ff3333, #000000;
     list-style: none;
     display: flex;
     overflow-x: auto;
-  
+
     .list-tab-item {
       flex-shrink: 0;
       width: 100px;
@@ -34,7 +34,6 @@ $colors: #ffffff, #ff3333, #000000;
       background-color: #242f9b;
       color: nth($colors, 1);
     }
-    
   }
 
   .error-message {
