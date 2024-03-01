@@ -1,19 +1,20 @@
 @charset "utf-8";
 $colors: #555555, #ff3333, #ffffff;
 
-.edit-list {
+.edit-task {
   width: 1000px;
   margin: 0 auto;
 
-  .edit-list-form {
+  .edit-task-form {
     color: nth($colors, 1);
   
-    .edit-list-title {
+    .edit-task-title,
+    .edit-task-detail {
       width: 300px;
       margin-bottom: 25px;
     }
   
-    .delete-list-button {
+    .delete-task-button {
       color: nth($colors, 2);
       border: solid 1px #ff3333;
       width: 80px;
@@ -22,7 +23,7 @@ $colors: #555555, #ff3333, #ffffff;
       border-radius: 5px;
     }
     
-    .edit-list-button {
+    .edit-task-button {
       background-color: #242f9b;
       color: nth($colors, 3);
       width: 80px;
