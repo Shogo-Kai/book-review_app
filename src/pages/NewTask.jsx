@@ -102,6 +102,7 @@ export const NewTask = () => {
           className="new-task-limit"
           />
           <br />
+          <div className="example">入力例:2024-03-15T12:12:11Z</div>
           <button
             type="button"
             className="new-task-button"
