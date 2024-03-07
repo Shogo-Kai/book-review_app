@@ -96,8 +96,9 @@ export const NewTask = () => {
           <label>期限</label>
           <br />
           <input 
-          type="datetime-local"
+          type="datetime"
           onChange={handleLimitChange}
+          placeholder='YYYY-MM-DDTHH:MM:SSZ'
           className="new-task-limit"
           />
           <br />
