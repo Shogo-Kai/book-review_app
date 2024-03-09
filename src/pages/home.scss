@@ -68,6 +68,10 @@ $colors: #ffffff, #ff3333, #000000;
   font-size: large;
   border: solid 1px #ffffff;
 
+  span {
+    font-size: medium;
+  }
+
   .task-item-link {
     display: block;
     width: 100%;

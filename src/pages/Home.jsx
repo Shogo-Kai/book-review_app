@@ -122,7 +122,7 @@ export const Home = () => {
   );
 };
 
-// 表示するタスク
+// 表示するタスク 状態:完了
 const Tasks = (props) => {
   const { tasks, selectListId, isDoneDisplay } = props;
   if (tasks === null) return <></>;
@@ -140,8 +140,14 @@ const Tasks = (props) => {
                 to={`/lists/${selectListId}/tasks/${task.id}`}
                 className="task-item-link"
               >
+                <span>タイトル:</span>
                 {task.title}
+
                 <br />
+                <span>期限:</span>
+                {task.limit.replace(/[TZ]/g, ' ')}
+                <br />
+                <span>状態:</span>
                 {task.done ? '完了' : '未完了'}
               </Link>
             </li>
@@ -149,6 +155,8 @@ const Tasks = (props) => {
       </ul>
     );
   }
+
+  /* 状態:未完了 */
 
   return (
     <ul>
@@ -162,8 +170,14 @@ const Tasks = (props) => {
               to={`/lists/${selectListId}/tasks/${task.id}`}
               className="task-item-link"
             >
+              <span>タイトル:</span>
               {task.title}
+
               <br />
+              <span>期限:</span>
+              {task.limit.replace(/[TZ]/g, ' ')}
+              <br />
+              <span>状態:</span>
               {task.done ? '完了' : '未完了'}
             </Link>
           </li>
