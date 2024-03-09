@@ -24,7 +24,7 @@ export const NewTask = () => {
       title: title,
       detail: detail,
       done: false,
-      limit: limit
+      limit: limit,
     };
 
     axios
@@ -95,11 +95,11 @@ export const NewTask = () => {
           <br />
           <label>期限</label>
           <br />
-          <input 
-          type="datetime"
-          onChange={handleLimitChange}
-          placeholder='YYYY-MM-DDTHH:MM:SSZ'
-          className="new-task-limit"
+          <input
+            type="datetime"
+            onChange={handleLimitChange}
+            placeholder="YYYY-MM-DDTHH:MM:SSZ"
+            className="new-task-limit"
           />
           <br />
           <div className="example">入力例:2024-03-15T12:12:11Z</div>

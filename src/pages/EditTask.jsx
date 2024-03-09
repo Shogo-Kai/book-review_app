@@ -13,9 +13,11 @@ export const EditTask = () => {
   const [title, setTitle] = useState('');
   const [detail, setDetail] = useState('');
   const [isDone, setIsDone] = useState();
+  const [limit, setLimit] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
+  const handleLimitChange = (e) => setLimit(e.target.value);
   const handleIsDoneChange = (e) => setIsDone(e.target.value === 'done');
   const onUpdateTask = () => {
     console.log(isDone);
@@ -23,6 +25,7 @@ export const EditTask = () => {
       title: title,
       detail: detail,
       done: isDone,
+      limit: limit,
     };
 
     axios
@@ -67,6 +70,7 @@ export const EditTask = () => {
         setTitle(task.title);
         setDetail(task.detail);
         setIsDone(task.done);
+        setLimit(task.limit);
       })
       .catch((err) => {
         setErrorMessage(`タスク情報の取得に失敗しました。${err}`);
@@ -98,6 +102,16 @@ export const EditTask = () => {
             value={detail}
           />
           <br />
+          <label>期限</label>
+          <br />
+          <textarea
+            type="datetime"
+            onChange={handleLimitChange}
+            className="edit-task-limit"
+            value={limit}
+          />
+          <br />
+          <div className="editExample">編集例:2024-03-09T11:15:59Z</div>
           <div>
             <input
               type="radio"
