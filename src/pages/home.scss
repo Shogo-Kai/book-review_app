@@ -61,16 +61,13 @@ $colors: #ffffff, #ff3333, #000000;
 
 .task-item {
   list-style-type: none;
-  height: 70px;
+  height: 100px;
   width: calc(100% - 25px);
   background-color: #f5f5f5;
   padding-left: 25px;
   font-size: large;
-  border: solid 1px #ffffff;
-
-  span {
-    font-size: medium;
-  }
+  border: solid 1px #f5f5f5;
+  margin-bottom: 25px;
 
   .task-item-link {
     display: block;
@@ -78,5 +75,9 @@ $colors: #ffffff, #ff3333, #000000;
     height: 100%;
     text-decoration: none;
     color: nth($colors, 3);
+  }
+
+  span {
+    font-size: medium;
   }
 }

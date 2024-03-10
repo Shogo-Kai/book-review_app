@@ -14,6 +14,7 @@ export const Home = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [cookies] = useCookies();
   const handleIsDoneDisplayChange = (e) => setIsDoneDisplay(e.target.value);
+
   useEffect(() => {
     axios
       .get(`${url}/lists`, {
@@ -124,6 +125,18 @@ export const Home = () => {
 
 // 表示するタスク 状態:完了
 const Tasks = (props) => {
+  const calcDate = (e) => {
+    let currentTime = new Date();
+    let limitTime = new Date(e);
+    let difference = limitTime.getTime() - currentTime.getTime();
+
+    const minute = Math.floor((difference / 1000 / 60) % 60);
+    const hour = Math.floor((difference / 1000 / 60 / 60) % 24);
+    const day = Math.floor(difference / 1000 / 60 / 60 / 24);
+
+    return `${day}日と${hour}時間${minute}分`;
+  };
+
   const { tasks, selectListId, isDoneDisplay } = props;
   if (tasks === null) return <></>;
 
@@ -176,6 +189,10 @@ const Tasks = (props) => {
               <br />
               <span>期限:</span>
               {task.limit.replace(/[TZ]/g, ' ')}
+              <br />
+              <span>残り時間:</span>
+              {calcDate(task.limit)}
+
               <br />
               <span>状態:</span>
               {task.done ? '完了' : '未完了'}
