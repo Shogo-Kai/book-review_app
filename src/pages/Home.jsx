@@ -137,6 +137,20 @@ const Tasks = (props) => {
     return `${day}日と${hour}時間${minute}分`;
   };
 
+  const changeJst = (e) => {
+    let limit = new Date(e);
+
+    const minute = limit.getMinutes();
+    const hour = limit.getHours();
+    const day = limit.getDate();
+    const month = limit.getMonth() + 1;
+    const year = limit.getFullYear();
+    console.log(e);
+    console.log(limit);
+
+    return `${year}年${month}月${day}日${hour}時${minute}分`;
+  };
+
   const { tasks, selectListId, isDoneDisplay } = props;
   if (tasks === null) return <></>;
 
@@ -158,7 +172,7 @@ const Tasks = (props) => {
 
                 <br />
                 <span>期限:</span>
-                {task.limit.replace(/[TZ]/g, ' ')}
+                {changeJst(task.limit)}
                 <br />
                 <span>状態:</span>
                 {task.done ? '完了' : '未完了'}
@@ -188,7 +202,7 @@ const Tasks = (props) => {
 
               <br />
               <span>期限:</span>
-              {task.limit.replace(/[TZ]/g, ' ')}
+              {changeJst(task.limit)}
               <br />
               <span>残り時間:</span>
               {calcDate(task.limit)}
