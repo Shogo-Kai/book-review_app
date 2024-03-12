@@ -17,7 +17,8 @@ export const NewTask = () => {
   const navigate = useNavigate();
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
-  const handleLimitChange = (e) => setLimit(e.target.value);
+  const handleLimitChange = (e) =>
+    setLimit(new Date(e.target.value).toISOString());
   const handleSelectList = (id) => setSelectListId(id);
   const onCreateTask = () => {
     const data = {
@@ -96,13 +97,11 @@ export const NewTask = () => {
           <label>期限</label>
           <br />
           <input
-            type="datetime"
+            type="datetime-local"
             onChange={handleLimitChange}
-            placeholder="YYYY-MM-DDTHH:MM:SSZ"
             className="new-task-limit"
           />
           <br />
-          <div className="example">入力例:2024-03-15T12:12:11Z</div>
           <button
             type="button"
             className="new-task-button"

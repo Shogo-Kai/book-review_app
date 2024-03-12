@@ -17,8 +17,10 @@ export const EditTask = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
-  const handleLimitChange = (e) => setLimit(e.target.value);
+  const handleLimitChange = (e) =>
+    setLimit(new Date(e.target.value).toISOString());
   const handleIsDoneChange = (e) => setIsDone(e.target.value === 'done');
+
   const onUpdateTask = () => {
     console.log(isDone);
     const data = {
@@ -104,14 +106,13 @@ export const EditTask = () => {
           <br />
           <label>期限</label>
           <br />
-          <textarea
-            type="datetime"
+          <input
+            type="datetime-local"
             onChange={handleLimitChange}
             className="edit-task-limit"
-            value={limit}
           />
           <br />
-          <div className="editExample">編集例:2024-03-09T11:15:59Z</div>
+
           <div>
             <input
               type="radio"
