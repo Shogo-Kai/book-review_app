@@ -129,12 +129,15 @@ const Tasks = (props) => {
     let currentTime = new Date();
     let limitTime = new Date(e);
     let difference = limitTime.getTime() - currentTime.getTime();
+    if (difference > 0) {
+      const minute = Math.floor((difference / 1000 / 60) % 60);
+      const hour = Math.floor((difference / 1000 / 60 / 60) % 24);
+      const day = Math.floor(difference / 1000 / 60 / 60 / 24);
 
-    const minute = Math.floor((difference / 1000 / 60) % 60);
-    const hour = Math.floor((difference / 1000 / 60 / 60) % 24);
-    const day = Math.floor(difference / 1000 / 60 / 60 / 24);
-
-    return `${day}日と${hour}時間${minute}分`;
+      return `${day}日と${hour}時間${minute}分`;
+    } else {
+      return `なし`;
+    }
   };
 
   const changeJst = (e) => {
