@@ -14,12 +14,20 @@ export const EditTask = () => {
   const [detail, setDetail] = useState('');
   const [isDone, setIsDone] = useState();
   const [limit, setLimit] = useState('');
+  const [displayLimit, setDisplayLimit] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
   const handleLimitChange = (e) =>
     setLimit(new Date(e.target.value).toISOString());
   const handleIsDoneChange = (e) => setIsDone(e.target.value === 'done');
+  const changeFormat = (utcTime) => {
+    let limit = new Date(utcTime);
+
+    const change = limit.getTime() + 1000 * 60 * 60 * 9;
+    const limitTime = new Date(change).toISOString().split('.')[0];
+    document.getElementById('deadline').value = limitTime;
+  };
 
   const onUpdateTask = () => {
     console.log(isDone);
@@ -73,6 +81,7 @@ export const EditTask = () => {
         setDetail(task.detail);
         setIsDone(task.done);
         setLimit(task.limit);
+        changeFormat(task.limit);
       })
       .catch((err) => {
         setErrorMessage(`タスク情報の取得に失敗しました。${err}`);
@@ -107,10 +116,10 @@ export const EditTask = () => {
           <label>期限</label>
           <br />
           <input
+            id="deadline"
             type="datetime-local"
             onChange={handleLimitChange}
             className="edit-task-limit"
-            value={'2018-06-12T19:30'}
           />
           <br />
 
