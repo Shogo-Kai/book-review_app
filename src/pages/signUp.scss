@@ -2,11 +2,9 @@
 $colors: #555555, #ffffff, #ff3333;
 
 .signup {
-  width: 500px;
   margin: 0 auto;
 
   .signup-form {
-    margin: 25px 0;
     color: nth($colors, 1);
 
     .email-input,
@@ -14,20 +12,87 @@ $colors: #555555, #ffffff, #ff3333;
     .password-input {
       width: 100%;
       font-size: large;
-      height: 30px;
-      margin-bottom: 25px;
     }
 
     .signup-button {
       background-color: #242f9b;
       color: nth($colors, 2);
-      width: 100px;
-      height: 40px;
-      border-radius: 5px;
     }
   }
 
   .error-message {
     color: nth($colors, 3);
+  }
+}
+
+@media screen and (min-width: 320px) {
+  /*　for iPhoneSE　*/
+  .signup {
+    width: 156px;
+
+    .signup-form {
+      margin: 7.8px 0;
+
+      .email-input,
+      .name-input,
+      .password-input {
+        height: 9px;
+        margin-bottom: 7.8px;
+      }
+
+      .signup-button {
+        width: 31px;
+        height: 12px;
+        border-radius: 1.5px;
+      }
+    }
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  /*　for iPad 　*/
+
+  .signup {
+    width: 384px;
+
+    .signup-form {
+      margin: 19px 0;
+
+      .email-input,
+      .name-input,
+      .password-input {
+        height: 23px;
+        margin-bottom: 19px;
+      }
+
+      .signup-button {
+        width: 76px;
+        height: 30px;
+        border-radius: 3.8px;
+      }
+    }
+  }
+}
+@media screen and (min-width: 1024px) {
+  /*　for PC　*/
+
+  .signup {
+    width: 500px;
+
+    .signup-form {
+      margin: 25px 0;
+
+      .email-input,
+      .name-input,
+      .password-input {
+        height: 30px;
+        margin-bottom: 25px;
+      }
+
+      .signup-button {
+        width: 100px;
+        height: 40px;
+        border-radius: 5px;
+      }
+    }
   }
 }
