@@ -2,38 +2,111 @@
 $colors: #555555, #ff3333;
 
 .new-task {
-  width: 1000px;
   margin: 0 auto;
 
   .new-task-form {
     color: nth($colors, 1);
 
-    .new-task-select-list,
-    .new-task-title,
-    .new-task-detail {
-      width: 300px;
-      margin-bottom: 25px;
-    }
-
-    .new-task-detail {
-      height: 200px;
-    }
-
-    .new-task-limit {
-      width: 300px;
-      margin-bottom: 5px;
-    }
-
     .new-task-button {
       background-color: #242f9b;
       color: #ffffff;
-      width: 80px;
-      height: 40px;
-      border-radius: 5px;
     }
   }
 
   .error-message {
     color: nth($colors, 2);
+  }
+}
+
+@media screen and (min-width: 320px) {
+  /*　for iPhoneSE　*/
+
+  .new-task {
+    width: 312px;
+
+    .new-task-form {
+      .new-task-select-list,
+      .new-task-title,
+      .new-task-detail {
+        width: 93px;
+        margin-bottom: 7.8px;
+      }
+
+      .new-task-detail {
+        height: 62px;
+      }
+
+      .new-task-limit {
+        width: 93px;
+        margin-bottom: 1.5px;
+      }
+
+      .new-task-button {
+        width: 25px;
+        height: 12.5px;
+        border-radius: 1.5px;
+      }
+    }
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  /*　for iPad 　*/
+
+  .new-task {
+    width: 768px;
+
+    .new-task-form {
+      .new-task-select-list,
+      .new-task-title,
+      .new-task-detail {
+        width: 230px;
+        margin-bottom: 19px;
+      }
+
+      .new-task-detail {
+        height: 153px;
+      }
+
+      .new-task-limit {
+        width: 230px;
+        margin-bottom: 3px;
+      }
+
+      .new-task-button {
+        width: 61px;
+        height: 30px;
+        border-radius: 3.8px;
+      }
+    }
+  }
+}
+@media screen and (min-width: 1024px) {
+  /*　for PC　*/
+  .new-task {
+    width: 1000px;
+
+    .new-task-form {
+      .new-task-select-list,
+      .new-task-title,
+      .new-task-detail {
+        width: 300px;
+        margin-bottom: 25px;
+      }
+
+      .new-task-detail {
+        height: 200px;
+      }
+
+      .new-task-limit {
+        width: 300px;
+        margin-bottom: 5px;
+      }
+
+      .new-task-button {
+        width: 80px;
+        height: 40px;
+        border-radius: 5px;
+      }
+    }
   }
 }
