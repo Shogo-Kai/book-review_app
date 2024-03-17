@@ -1,9 +1,7 @@
 $colors: #ffffff, #ff3333, #000000;
 
 .taskList {
-  margin: 50px auto;
   list-style: none;
-  width: 1000px;
 
   .list-header {
     display: flex;
@@ -21,11 +19,9 @@ $colors: #ffffff, #ff3333, #000000;
 
     .list-tab-item {
       flex-shrink: 0;
-      width: 100px;
-      padding: 0 25px;
+
       text-overflow: normal;
-      margin-right: 5px;
-      border: solid 1px #242f9b;
+
       justify-content: center;
       align-items: center;
     }
@@ -42,19 +38,98 @@ $colors: #ffffff, #ff3333, #000000;
 }
 
 .tasks {
-  margin-top: 25px;
-
   .tasks-header {
     display: flex;
     justify-content: space-between;
   }
 
   .display-select-wrapper {
-    width: 100px;
-    margin: 0 0 25px auto;
-
     .display-select {
       width: 100%;
+    }
+  }
+}
+
+@media screen and (min-width: 320px) {
+  /*　for iPhoneSE　*/
+  .taskList {
+    margin: 15px auto;
+
+    width: 312px;
+
+    .list-tab {
+      .list-tab-item {
+        width: 31px;
+        padding: 0 7.8px;
+
+        margin-right: 1.5px;
+        border: solid 0.3px #242f9b;
+      }
+    }
+  }
+
+  .tasks {
+    margin-top: 7.8px;
+
+    .display-select-wrapper {
+      width: 31px;
+      margin: 0 0 7.8px auto;
+    }
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  /*　for iPad 　*/
+
+  .taskList {
+    margin: 38px auto;
+
+    width: 768px;
+
+    .list-tab {
+      .list-tab-item {
+        width: 76px;
+        padding: 0 19px;
+
+        margin-right: 3.8px;
+        border: solid 0.7px #242f9b;
+      }
+    }
+  }
+
+  .tasks {
+    margin-top: 19px;
+
+    .display-select-wrapper {
+      width: 76px;
+      margin: 0 0 19px auto;
+    }
+  }
+}
+@media screen and (min-width: 1024px) {
+  /*　for PC　*/
+
+  .taskList {
+    margin: 50px auto;
+
+    width: 1000px;
+
+    .list-tab {
+      .list-tab-item {
+        width: 100px;
+        padding: 0 25px;
+
+        margin-right: 5px;
+        border: solid 1px #242f9b;
+      }
+    }
+  }
+
+  .tasks {
+    margin-top: 25px;
+
+    .display-select-wrapper {
+      width: 100px;
+      margin: 0 0 25px auto;
     }
   }
 }
