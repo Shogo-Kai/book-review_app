@@ -17,15 +17,14 @@ export const NewTask = () => {
   const navigate = useNavigate();
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
-  const handleLimitChange = (e) =>
-    setLimit(new Date(e.target.value).toISOString());
+  const handleLimitChange = (e) => setLimit(e.target.value);
   const handleSelectList = (id) => setSelectListId(id);
   const onCreateTask = () => {
     const data = {
       title: title,
       detail: detail,
       done: false,
-      limit: limit,
+      limit: new Date(limit).toISOString(),
     };
 
     axios

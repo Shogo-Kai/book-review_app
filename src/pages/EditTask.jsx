@@ -18,15 +18,14 @@ export const EditTask = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
-  const handleLimitChange = (e) =>
-    setLimit(new Date(e.target.value).toISOString());
+  const handleLimitChange = (e) => setLimit(e.target.value);
   const handleIsDoneChange = (e) => setIsDone(e.target.value === 'done');
   const changeFormat = (utcTime) => {
     let limit = new Date(utcTime);
 
     const change = limit.getTime() + 1000 * 60 * 60 * 9;
     const limitTime = new Date(change).toISOString().split('.')[0];
-    document.getElementById('deadline').value = limitTime;
+    return limitTime;
   };
 
   const onUpdateTask = () => {
@@ -35,7 +34,7 @@ export const EditTask = () => {
       title: title,
       detail: detail,
       done: isDone,
-      limit: limit,
+      limit: new Date(limit).toISOString(),
     };
 
     axios
@@ -80,8 +79,7 @@ export const EditTask = () => {
         setTitle(task.title);
         setDetail(task.detail);
         setIsDone(task.done);
-        setLimit(task.limit);
-        changeFormat(task.limit);
+        setLimit(changeFormat(task.limit));
       })
       .catch((err) => {
         setErrorMessage(`タスク情報の取得に失敗しました。${err}`);
@@ -116,10 +114,10 @@ export const EditTask = () => {
           <label>期限</label>
           <br />
           <input
-            id="deadline"
             type="datetime-local"
             onChange={handleLimitChange}
             className="edit-task-limit"
+            value={limit}
           />
           <br />
 
