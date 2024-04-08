@@ -4,16 +4,11 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { Home } from '../pages/Home';
 import { NotFound } from '../pages/NotFound';
 import { SignIn } from '../pages/SignIn';
-
-
-
 import { SignUp } from '../pages/SignUp';
-
 
 export const Router = () => {
   const auth = useSelector((state) => state.auth.isSignIn);
 
-  /* 変更箇所 22-26 */
   return (
     <BrowserRouter>
       <Routes>
@@ -22,10 +17,6 @@ export const Router = () => {
         {auth ? (
           <>
             <Route path="/" element={<Home />} />
-            
-           
-            
-            
           </>
         ) : (
           <Route path="*" element={<Navigate to="/signin" />} />

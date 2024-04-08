@@ -7,7 +7,6 @@ import { CookiesProvider } from 'react-cookie';
 import { Provider } from 'react-redux';
 import { store } from './store';
 
-/*変更箇所 2,12-19*/
 const container = document.getElementById('root');
 const root = createRoot(container);
 root.render(
