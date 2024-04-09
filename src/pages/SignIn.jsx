@@ -10,13 +10,13 @@ import { signIn } from '../authSlice';
 import { url } from '../const';
 
 export const SignIn = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm({ reValidateMode: 'onSubmit', criteriaMode: 'all',});
   const auth = useSelector((state) => state.auth.isSignIn);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState();
   const [cookies, setCookie, removeCookie] = useCookies();
-  
+
   const onSignIn = (data) => {
     axios
       .post(`${url}/signin`, { email: data.email, password: data.password })
@@ -44,16 +44,27 @@ export const SignIn = () => {
           <input
             type="email"
             className="email-input"
-            {...register('email')}
+            {...register('email', { required: '入力が必須の項目です。' })}
           />
+          {errors.email?.message && <div className='error-message'>{errors.email?.message}</div>}
           <br />
           <label className="password-label">パスワード</label>
           <br />
           <input
             type="password"
             className="password-input"
-            {...register('password')}
+            {...register('password', { required: {
+              value: true,
+              message: '入力が必須の項目です。',
+            },
+            pattern: {
+              value: /^[A-Za-z]+$/,
+              message: 'アルファベットのみ入力してください。',
+            },
+          })}
           />
+          {errors.password?.types?.required && <div className='error-message'>{errors.password.types.required}</div>}
+          {errors.password?.types?.pattern && <div className='error-message'>{errors.password.types.pattern}</div>}
           <br />
           <button type="button" className="signin-button" onClick={handleSubmit(onSignIn)}>
             サインイン
