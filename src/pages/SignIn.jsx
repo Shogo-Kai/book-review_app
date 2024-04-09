@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { Navigate, useNavigate, Link } from 'react-router-dom';
@@ -9,18 +10,16 @@ import { signIn } from '../authSlice';
 import { url } from '../const';
 
 export const SignIn = () => {
+  const { register, handleSubmit } = useForm();
   const auth = useSelector((state) => state.auth.isSignIn);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState();
   const [cookies, setCookie, removeCookie] = useCookies();
-  const handleEmailChange = (e) => setEmail(e.target.value);
-  const handlePasswordChange = (e) => setPassword(e.target.value);
-  const onSignIn = () => {
+  
+  const onSignIn = (data) => {
     axios
-      .post(`${url}/signin`, { email: email, password: password })
+      .post(`${url}/signin`, { email: data.email, password: data.password })
       .then((res) => {
         setCookie('token', res.data.token);
         dispatch(signIn());
@@ -45,7 +44,7 @@ export const SignIn = () => {
           <input
             type="email"
             className="email-input"
-            onChange={handleEmailChange}
+            {...register('email')}
           />
           <br />
           <label className="password-label">パスワード</label>
@@ -53,10 +52,10 @@ export const SignIn = () => {
           <input
             type="password"
             className="password-input"
-            onChange={handlePasswordChange}
+            {...register('password')}
           />
           <br />
-          <button type="button" className="signin-button" onClick={onSignIn}>
+          <button type="button" className="signin-button" onClick={handleSubmit(onSignIn)}>
             サインイン
           </button>
         </form>
