@@ -76,6 +76,7 @@ export const SignUp = () => {
             作成
           </button>
         </form>
+        <Link to="/signin">ログイン画面へ</Link>
       </main>
     </div>
   );
