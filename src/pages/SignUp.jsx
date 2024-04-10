@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useForm } from 'react-hook-form';
 import React, { useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useSelector, useDispatch } from 'react-redux';
@@ -8,27 +9,25 @@ import { Header } from '../components/Header';
 import { url } from '../const';
 import './signUp.scss';
 
+
 export const SignUp = () => {
   const navigate = useNavigate();
   const auth = useSelector((state) => state.auth.isSignIn);
   const dispatch = useDispatch();
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
+  const { register, handleSubmit } = useForm();
   const [errorMessage, setErrorMessge] = useState();
   const [cookies, setCookie, removeCookie] = useCookies();
-  const handleEmailChange = (e) => setEmail(e.target.value);
-  const handleNameChange = (e) => setName(e.target.value);
-  const handlePasswordChange = (e) => setPassword(e.target.value);
-  const onSignUp = () => {
-    const data = {
-      email: email,
-      name: name,
-      password: password,
+
+  const onSignUp = (data) => {
+    
+    const userInfo = {
+      email: data.email,
+      name: data.name,
+      password: data.password,
     };
 
     axios
-      .post(`${url}/users`, data)
+      .post(`${url}/users`, userInfo)
       .then((res) => {
         const token = res.data.token;
         dispatch(signIn());
@@ -52,27 +51,27 @@ export const SignUp = () => {
           <br />
           <input
             type="email"
-            onChange={handleEmailChange}
             className="email-input"
+            {...register('email')}
           />
           <br />
           <label>ユーザ名</label>
           <br />
           <input
-            type="text"
-            onChange={handleNameChange}
+            type="name"
             className="name-input"
+            {...register('name')}
           />
           <br />
           <label>パスワード</label>
           <br />
           <input
             type="password"
-            onChange={handlePasswordChange}
             className="password-input"
+            {...register('password')}
           />
           <br />
-          <button type="button" onClick={onSignUp} className="signup-button">
+          <button type="button" onClick={handleSubmit(onSignUp)} className="signup-button">
             作成
           </button>
         </form>
