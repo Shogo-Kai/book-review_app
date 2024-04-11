@@ -50,6 +50,10 @@ export const SignUp = () => {
           <input type="name" className="name-input" {...register('name', { required: '入力が必須の項目です。'})} />
           {errors.name?.message && (<div className='error-message'>{errors.name?.message}</div>)}
           <br />
+          <label>ユーザアイコン</label>
+          <br />
+          <input type='file' className='file-input' />
+          <br />
           <label>メールアドレス</label>
           <br />
           <input type="email" className="email-input" {...register('email', { required: '入力が必須の項目です。'})} />
