@@ -66,7 +66,7 @@ export const SignIn = () => {
               },
               pattern: {
                 value: /^[A-Za-z]+$/,
-                message: 'アルファベットのみ入力してください。',
+                message: 'アルファベットのみ入力可能です。',
               },
             })}
           />

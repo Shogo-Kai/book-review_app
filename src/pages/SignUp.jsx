@@ -13,7 +13,7 @@ export const SignUp = () => {
   const navigate = useNavigate();
   const auth = useSelector((state) => state.auth.isSignIn);
   const dispatch = useDispatch();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState: {errors}, } = useForm({ reValidateMode: 'onSubmit', criteriaMode: 'all'});
   const [errorMessage, setErrorMessge] = useState();
   const [cookies, setCookie, removeCookie] = useCookies();
 
@@ -45,21 +45,38 @@ export const SignUp = () => {
         <h2>新規作成</h2>
         <p className="error-message">{errorMessage}</p>
         <form className="signup-form">
-          <label>メールアドレス</label>
-          <br />
-          <input type="email" className="email-input" {...register('email')} />
-          <br />
           <label>ユーザ名</label>
           <br />
-          <input type="name" className="name-input" {...register('name')} />
+          <input type="name" className="name-input" {...register('name', { required: '入力が必須の項目です。'})} />
+          {errors.name?.message && (<div className='error-message'>{errors.name?.message}</div>)}
+          <br />
+          <label>メールアドレス</label>
+          <br />
+          <input type="email" className="email-input" {...register('email', { required: '入力が必須の項目です。'})} />
+          {errors.email?.message && (<div className='error-message'>{errors.email?.message}</div>)}
           <br />
           <label>パスワード</label>
           <br />
           <input
             type="password"
             className="password-input"
-            {...register('password')}
+            {...register('password', {
+              required: {
+                value: true,
+                message: '入力が必須の項目です。',
+              },
+              pattern: {
+                value: /^[A-Za-z]+$/,
+                message: 'アルファベットのみ入力可能です。'
+              }
+            })}
           />
+          {errors.password?.types?.required && (
+            <div className='error-message'>{errors.password.types.required}</div>
+          )}
+          {errors.password?.types?.pattern && (
+            <div className='error-message'>{errors.password.types.pattern}</div>
+          )}
           <br />
           <button
             type="button"
