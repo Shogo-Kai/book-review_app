@@ -9,7 +9,6 @@ import { Header } from '../components/Header';
 import { url } from '../const';
 import './signUp.scss';
 
-
 export const SignUp = () => {
   const navigate = useNavigate();
   const auth = useSelector((state) => state.auth.isSignIn);
@@ -19,7 +18,6 @@ export const SignUp = () => {
   const [cookies, setCookie, removeCookie] = useCookies();
 
   const onSignUp = (data) => {
-    
     const userInfo = {
       email: data.email,
       name: data.name,
@@ -49,19 +47,11 @@ export const SignUp = () => {
         <form className="signup-form">
           <label>メールアドレス</label>
           <br />
-          <input
-            type="email"
-            className="email-input"
-            {...register('email')}
-          />
+          <input type="email" className="email-input" {...register('email')} />
           <br />
           <label>ユーザ名</label>
           <br />
-          <input
-            type="name"
-            className="name-input"
-            {...register('name')}
-          />
+          <input type="name" className="name-input" {...register('name')} />
           <br />
           <label>パスワード</label>
           <br />
@@ -71,7 +61,11 @@ export const SignUp = () => {
             {...register('password')}
           />
           <br />
-          <button type="button" onClick={handleSubmit(onSignUp)} className="signup-button">
+          <button
+            type="button"
+            onClick={handleSubmit(onSignUp)}
+            className="signup-button"
+          >
             作成
           </button>
         </form>
