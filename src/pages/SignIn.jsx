@@ -79,10 +79,7 @@ export const SignIn = () => {
             <div className="error-message">{errors.password.types.pattern}</div>
           )}
           <br />
-          <button
-            type="submit"
-            className="signin-button"
-          >
+          <button type="submit" className="signin-button">
             サインイン
           </button>
         </form>

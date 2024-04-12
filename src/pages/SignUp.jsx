@@ -13,7 +13,11 @@ export const SignUp = () => {
   const navigate = useNavigate();
   const auth = useSelector((state) => state.auth.isSignIn);
   const dispatch = useDispatch();
-  const { register, handleSubmit, formState: {errors}, } = useForm({ reValidateMode: 'onSubmit', criteriaMode: 'all'});
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ reValidateMode: 'onSubmit', criteriaMode: 'all' });
   const [errorMessage, setErrorMessge] = useState();
   const [cookies, setCookie, removeCookie] = useCookies();
 
@@ -47,19 +51,37 @@ export const SignUp = () => {
         <form onSubmit={handleSubmit(onSignUp)} className="signup-form">
           <label>ユーザ名</label>
           <br />
-          <input type="name" className="name-input" {...register('name', { required: '入力が必須の項目です。'})} />
-          {errors.name?.message && (<div className='error-message'>{errors.name.message}</div>)}
+          <input
+            type="name"
+            className="name-input"
+            {...register('name', { required: '入力が必須の項目です。' })}
+          />
+          {errors.name?.message && (
+            <div className="error-message">{errors.name.message}</div>
+          )}
           <br />
           <label>ユーザアイコン</label>
           <br />
-          <input type='file' accept='.jpg, .png' className='file-input' 
-          {...register('file', { required: 'ファイルを選択してください。',})} />
-          {errors.file?.message && (<div className='error-message'>{errors.file.message}</div>)}
+          <input
+            type="file"
+            accept=".jpg, .png"
+            className="file-input"
+            {...register('file', { required: 'ファイルを選択してください。' })}
+          />
+          {errors.file?.message && (
+            <div className="error-message">{errors.file.message}</div>
+          )}
           <br />
           <label>メールアドレス</label>
           <br />
-          <input type="email" className="email-input" {...register('email', { required: '入力が必須の項目です。'})} />
-          {errors.email?.message && (<div className='error-message'>{errors.email.message}</div>)}
+          <input
+            type="email"
+            className="email-input"
+            {...register('email', { required: '入力が必須の項目です。' })}
+          />
+          {errors.email?.message && (
+            <div className="error-message">{errors.email.message}</div>
+          )}
           <br />
           <label>パスワード</label>
           <br />
@@ -73,21 +95,20 @@ export const SignUp = () => {
               },
               pattern: {
                 value: /^[A-Za-z]+$/,
-                message: 'アルファベットのみ入力可能です。'
-              }
+                message: 'アルファベットのみ入力可能です。',
+              },
             })}
           />
           {errors.password?.types?.required && (
-            <div className='error-message'>{errors.password.types.required}</div>
+            <div className="error-message">
+              {errors.password.types.required}
+            </div>
           )}
           {errors.password?.types?.pattern && (
-            <div className='error-message'>{errors.password.types.pattern}</div>
+            <div className="error-message">{errors.password.types.pattern}</div>
           )}
           <br />
-          <button
-            type="submit"
-            className="signup-button"
-          >
+          <button type="submit" className="signup-button">
             作成
           </button>
         </form>
