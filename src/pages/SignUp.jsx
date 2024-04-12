@@ -52,8 +52,9 @@ export const SignUp = () => {
           <br />
           <label>ユーザアイコン</label>
           <br />
-          <input type='file' accept='.jpg, .png' className='file-input' {...register('images')} />
-          {errors.images && (<div className='error-message'>{errors.images.message}</div>)}
+          <input type='file' accept='.jpg, .png' className='file-input' 
+          {...register('file', { required: 'ファイルを選択してください。',})} />
+          {errors.file?.message && (<div className='error-message'>{errors.file.message}</div>)}
           <br />
           <label>メールアドレス</label>
           <br />
