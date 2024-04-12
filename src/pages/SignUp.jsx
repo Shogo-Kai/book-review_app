@@ -44,20 +44,21 @@ export const SignUp = () => {
       <main className="signup">
         <h2>新規作成</h2>
         <p className="error-message">{errorMessage}</p>
-        <form className="signup-form">
+        <form onSubmit={handleSubmit(onSignUp)} className="signup-form">
           <label>ユーザ名</label>
           <br />
           <input type="name" className="name-input" {...register('name', { required: '入力が必須の項目です。'})} />
-          {errors.name?.message && (<div className='error-message'>{errors.name?.message}</div>)}
+          {errors.name?.message && (<div className='error-message'>{errors.name.message}</div>)}
           <br />
           <label>ユーザアイコン</label>
           <br />
-          <input type='file' className='file-input' />
+          <input type='file' accept='.jpg, .png' className='file-input' {...register('images')} />
+          {errors.images && (<div className='error-message'>{errors.images.message}</div>)}
           <br />
           <label>メールアドレス</label>
           <br />
           <input type="email" className="email-input" {...register('email', { required: '入力が必須の項目です。'})} />
-          {errors.email?.message && (<div className='error-message'>{errors.email?.message}</div>)}
+          {errors.email?.message && (<div className='error-message'>{errors.email.message}</div>)}
           <br />
           <label>パスワード</label>
           <br />
@@ -83,8 +84,7 @@ export const SignUp = () => {
           )}
           <br />
           <button
-            type="button"
-            onClick={handleSubmit(onSignUp)}
+            type="submit"
             className="signup-button"
           >
             作成

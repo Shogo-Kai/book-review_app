@@ -42,7 +42,7 @@ export const SignIn = () => {
       <main className="signin">
         <h2>サインイン</h2>
         <p className="error-message">{errorMessage}</p>
-        <form className="signin-form">
+        <form onSubmit={handleSubmit(onSignIn)} className="signin-form">
           <label className="email-label">メールアドレス</label>
           <br />
           <input
@@ -80,9 +80,8 @@ export const SignIn = () => {
           )}
           <br />
           <button
-            type="button"
+            type="submit"
             className="signin-button"
-            onClick={handleSubmit(onSignIn)}
           >
             サインイン
           </button>
