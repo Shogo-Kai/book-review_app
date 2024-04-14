@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
+import Compressor from 'compressorjs';
 import React, { useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useSelector, useDispatch } from 'react-redux';
@@ -20,6 +21,20 @@ export const SignUp = () => {
   } = useForm({ reValidateMode: 'onSubmit', criteriaMode: 'all' });
   const [errorMessage, setErrorMessge] = useState();
   const [cookies, setCookie, removeCookie] = useCookies();
+  const [formData, setFormData] = useState(new FormData());
+
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0];
+    if(!file) return;
+    const newFormData = new FormData();
+    new Compressor(file, {
+      quality: 0.6,
+      success(compressedFile) {
+        newFormData.append('icon', compressedFile);
+        setFormData(newFormData);
+      }
+    });
+  };
 
   const onSignUp = (data) => {
     const userInfo = {
@@ -32,14 +47,22 @@ export const SignUp = () => {
       .post(`${url}/users`, userInfo)
       .then((res) => {
         const token = res.data.token;
-        dispatch(signIn());
         setCookie('token', token);
+        dispatch(signIn());
+        return (axios.post(`${url}/uploads`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            authorization: `Bearer ${cookies.token}`,
+          },
+        }));
+      })
+      .then(() => {
         navigate('/');
       })
       .catch((err) => {
         setErrorMessge(`サインアップに失敗しました。 ${err}`);
       });
-
+      
     if (auth) return <Navigate to="/" />;
   };
   return (
@@ -67,6 +90,7 @@ export const SignUp = () => {
             accept=".jpg, .png"
             className="file-input"
             {...register('file', { required: 'ファイルを選択してください。' })}
+            onChange={handleFileChange}
           />
           {errors.file?.message && (
             <div className="error-message">{errors.file.message}</div>
