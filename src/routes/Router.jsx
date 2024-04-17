@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
-import { Home } from '../pages/Home';
+import { Review } from '../pages/Review';
 import { NotFound } from '../pages/NotFound';
 import { SignIn } from '../pages/SignIn';
 import { SignUp } from '../pages/SignUp';
@@ -16,7 +16,7 @@ export const Router = () => {
         <Route path="/signup" element={<SignUp />} />
         {auth ? (
           <>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Review />} />
           </>
         ) : (
           <Route path="*" element={<Navigate to="/signin" />} />

@@ -37,7 +37,7 @@ export const SignIn = () => {
   if (auth) return <Navigate to="/" />;
 
   return (
-    <div>
+    <div className="all">
       <Header />
       <main className="signin">
         <h2>サインイン</h2>
@@ -83,7 +83,9 @@ export const SignIn = () => {
             サインイン
           </button>
         </form>
-        <Link to="/signup">新規作成</Link>
+        <Link to="/signup" className="link">
+          ユーザー登録画面へ
+        </Link>
       </main>
     </div>
   );

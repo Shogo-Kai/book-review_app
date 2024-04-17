@@ -25,14 +25,14 @@ export const SignUp = () => {
 
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
-    if(!file) return;
+    if (!file) return;
     const newFormData = new FormData();
     new Compressor(file, {
       quality: 0.6,
       success(compressedFile) {
         newFormData.append('icon', compressedFile);
         setFormData(newFormData);
-      }
+      },
     });
   };
 
@@ -49,12 +49,12 @@ export const SignUp = () => {
         const token = res.data.token;
         setCookie('token', token);
         dispatch(signIn());
-        return (axios.post(`${url}/uploads`, formData, {
+        return axios.post(`${url}/uploads`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
             authorization: `Bearer ${cookies.token}`,
           },
-        }));
+        });
       })
       .then(() => {
         navigate('/');
@@ -62,14 +62,14 @@ export const SignUp = () => {
       .catch((err) => {
         setErrorMessge(`サインアップに失敗しました。 ${err}`);
       });
-      
+
     if (auth) return <Navigate to="/" />;
   };
   return (
-    <div>
+    <div className="all">
       <Header />
       <main className="signup">
-        <h2>新規作成</h2>
+        <h2>ユーザー登録</h2>
         <p className="error-message">{errorMessage}</p>
         <form onSubmit={handleSubmit(onSignUp)} className="signup-form">
           <label>ユーザ名</label>
@@ -133,10 +133,12 @@ export const SignUp = () => {
           )}
           <br />
           <button type="submit" className="signup-button">
-            作成
+            登録
           </button>
         </form>
-        <Link to="/signin">ログイン画面へ</Link>
+        <Link to="/signin" className="link">
+          ログイン画面へ
+        </Link>
       </main>
     </div>
   );

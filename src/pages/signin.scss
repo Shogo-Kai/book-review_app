@@ -1,15 +1,16 @@
 @charset "utf-8";
 $colors: #555555, #ffffff, #ff3333;
 
+.all {
+  background-image: url(../material/アジト（照明ON）.jpg);
+  background-size: cover;
+}
+
 .signin {
   margin: 0 auto;
+  color: nth($colors, 2);
 
   .signin-form {
-    .email-label,
-    .password-label {
-      color: nth($colors, 1);
-    }
-
     .email-input,
     .password-input {
       width: 100%;
@@ -25,6 +26,10 @@ $colors: #555555, #ffffff, #ff3333;
   .error-message {
     color: nth($colors, 3);
   }
+}
+
+.link {
+  color: nth($colors, 2);
 }
 
 @media screen and (min-width: 320px) {
