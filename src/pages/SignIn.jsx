@@ -37,7 +37,7 @@ export const SignIn = () => {
   if (auth) return <Navigate to="/" />;
 
   return (
-    <div className="all">
+    <div className="whole">
       <Header />
       <main className="signin">
         <h2>サインイン</h2>

@@ -66,7 +66,7 @@ export const SignUp = () => {
     if (auth) return <Navigate to="/" />;
   };
   return (
-    <div className="all">
+    <div className="whole">
       <Header />
       <main className="signup">
         <h2>ユーザー登録</h2>
