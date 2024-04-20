@@ -40,11 +40,7 @@ export const Review = () => {
         <ul className="books-list">
           {books.map((book) => {
             return (
-              <li
-                key={book.id}
-                className="books-list__info"
-                tabIndex="0"
-              >
+              <li key={book.id} className="books-list__info" tabIndex="0">
                 {books.title}
               </li>
             );
