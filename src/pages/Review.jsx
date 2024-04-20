@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import { Header } from '../components/Header';
@@ -29,20 +30,22 @@ export const Review = () => {
     <div className="whole">
       <Header />
       <div className="books">
-        <p className="error-message">{errorMessage}</p>
+        <p className="books__error-message">{errorMessage}</p>
         <div className="books-header">
           <h2 className="books-header__title">書籍一覧</h2>
+          <Link className='books-header__transition-button' to="/book/new">書籍レビュー登録</Link>
         </div>
         <ul className="books-list">
-          {books.map((key) => {
+          {books.map((book) => {
             return (
-              <li key={key} className="books-list__information" tabIndex="0">
+              <li key={book.id} className="books-list__information" tabIndex="0">
                 {books.title}
               </li>
             );
           })}
         </ul>
       </div>
+      <div></div>
     </div>
   );
 };
