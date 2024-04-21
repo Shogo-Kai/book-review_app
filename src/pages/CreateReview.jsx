@@ -3,17 +3,41 @@ import { useForm } from 'react-hook-form';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import { url } from '../const';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { Header } from '../components/Header';
 import './createreview.scss';
 
 export const CreateReview = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ reValidateMode: 'onSubmit', criteriaMode: 'all' });
   const [errorMessage, setErrorMessage] = useState();
+  const [cookies] = useCookies();
+
+  const entry = (data) => {
+    const bookInfo = {
+      title: data.title,
+      url: data.url,
+      detail: data.detail,
+      review: data.review,
+    };
+
+    axios
+      .post(`${url}/books`, bookInfo, {
+        headers: {
+          authorization: `Bearer ${cookies.token}`,
+        },
+      })
+      .then(() => {
+        navigate('/');
+      })
+      .catch((err) => {
+        setErrorMessage(`登録に失敗しました。 ${err}`);
+      });
+  };
 
   return (
     <div>
@@ -21,7 +45,7 @@ export const CreateReview = () => {
       <div className="create-review">
         <h2 className="create-review__heading">書籍レビューの登録</h2>
         <p className="create-review__error-message">{errorMessage}</p>
-        <form onSubmit={handleSubmit()} className="creat-form">
+        <form onSubmit={handleSubmit(entry)} className="creat-form">
           <label className="creat-form__label" htmlFor="title">
             タイトル
           </label>
