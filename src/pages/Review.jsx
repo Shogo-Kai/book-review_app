@@ -33,9 +33,6 @@ export const Review = () => {
         <p className="books__error-message">{errorMessage}</p>
         <div className="books-header">
           <h2 className="books-header__title">書籍一覧</h2>
-          <Link className="books-header__transition" to="/review/create">
-            書籍レビュー登録
-          </Link>
         </div>
         <ul className="books-list">
           {books.map((book) => {
@@ -46,8 +43,12 @@ export const Review = () => {
             );
           })}
         </ul>
+        <div className="books-footer">
+          <Link className="books-footer__transition" to="/review/create">
+            書籍レビュー登録
+          </Link>
+        </div>
       </div>
-      <div></div>
     </div>
   );
 };

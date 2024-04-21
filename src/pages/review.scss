@@ -1,6 +1,46 @@
 @charset "utf-8";
+$colors: #555555, #ffffff, #ff3333;
 
 .whole {
   background-image: url(../material/アジト（照明ON）.jpg);
   background-size: cover;
+}
+
+.books {
+  margin: 0 auto;
+  text-align: center;
+  color: nth($colors, 2);
+
+  &__error-message {
+    color: nth($colors, 3);
+  }
+}
+
+.books-list {
+  width: 100%;
+  font-size: large;
+  list-style: none;
+}
+
+.books-footer {
+  text-align: right;
+
+  &__transition {
+    color: nth($colors, 2);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  /*　for PC　*/
+  .books {
+    margin: 35px auto;
+    width: 500px;
+  }
+
+  .books-list {
+    &__info {
+      height: 30px;
+      margin: 25px 0;
+    }
+  }
 }
