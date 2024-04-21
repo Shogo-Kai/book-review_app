@@ -41,7 +41,7 @@ export const Review = () => {
           {books.map((book) => {
             return (
               <li key={book.id} className="books-list__info" tabIndex="0">
-                {books.title}
+                {book.title}
               </li>
             );
           })}
