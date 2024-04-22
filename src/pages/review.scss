@@ -1,8 +1,8 @@
 @charset "utf-8";
-$colors: #555555, #E0E0E0, #ff3333;
+$colors: #555555, #FFFDD0, #ff3333;
 
 .whole {
-  background-image: url(../material/アジト（照明ON）.jpg);
+  background-image: url(../material/アジト.webp);
   background-size: cover;
 }
 
@@ -23,8 +23,6 @@ $colors: #555555, #E0E0E0, #ff3333;
 }
 
 .books-footer {
-  text-align: right;
-
   &__transition {
     color: nth($colors, 2);
   }
@@ -33,11 +31,12 @@ $colors: #555555, #E0E0E0, #ff3333;
 @media screen and (min-width: 1024px) {
   /*　for PC　*/
   .books {
-    margin: 35px auto;
+    margin: 20px auto;
     width: 500px;
   }
 
   .books-list {
+    text-align: left;
     &__info {
       height: 30px;
       margin: 25px 0;
