@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
-import ReactPaginate from 'react-paginate';
 import { Header } from '../components/Header';
+import { Pagination } from '../components/Pagination';
 import { url } from '../const';
 import './review.scss';
 
@@ -11,21 +11,32 @@ export const Review = () => {
   const [books, setBooks] = useState([]);
   const [errorMessage, setErrorMessage] = useState();
   const [cookies] = useCookies();
+  const [bookOffset, setBookOffset] = useState(0);
+
+  const handlePaginate = (selectedPage) => {
+    const newOffset = selectedPage.selected * 10;
+    setBookOffset(newOffset);
+  };
 
   useEffect(() => {
     axios
-      .get(`${url}/books?offset=0`, {
+      .get(`${url}/books?offset=${bookOffset}`, {
         headers: {
           authorization: `Bearer ${cookies.token}`,
         },
       })
       .then((res) => {
-        setBooks(res.data);
+        const modifiedBooks = res.data.map(book => ({
+          ...book,
+          title: book.title.length > 30 ? `${book.title.substring(0, 26)}...` : book.title
+        }));
+        setBooks(modifiedBooks);
+        setErrorMessage(null); 
       })
       .catch((err) => {
         setErrorMessage(`書籍一覧の取得に失敗しました。${err}`);
       });
-  }, []);
+  }, [bookOffset, cookies.token]);
 
   return (
     <div className="whole">
@@ -48,6 +59,10 @@ export const Review = () => {
           <Link className="books-footer__transition" to="/review/create">
             書籍レビュー登録
           </Link>
+        </div>
+        <div className='books-footer'>
+        <Pagination
+        onPageChange={handlePaginate} />
         </div>
       </div>
     </div>
