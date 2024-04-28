@@ -11,15 +11,14 @@ $color1: #ffffff;
   }
 }
 
-.header-contents {
-  margin: 10px 25px 10px auto;
-}
-
 .header-content {
   &__button,
-  &__link {
+  &__link-edit,
+  &__link-notokenreview {
     font-size: 15px;
+    text-decoration: none;
     color: $color1;
+    margin: 15px 25px 5px auto;
   }
 }
 
