@@ -26,11 +26,7 @@ export const Review = () => {
         },
       })
       .then((res) => {
-        const modifiedBooks = res.data.map(book => ({
-          ...book,
-          title: book.title.length > 30 ? `${book.title.substring(0, 26)}...` : book.title
-        }));
-        setBooks(modifiedBooks);
+        setBooks(res.data);
         setErrorMessage(null); 
       })
       .catch((err) => {
