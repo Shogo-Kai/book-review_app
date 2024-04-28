@@ -38,10 +38,10 @@ export const Review = () => {
     <div className="whole">
       <Header />
       <div className="books">
-        <p className="books__error-message">{errorMessage}</p>
         <div className="books-header">
           <h2 className="books-header__title">書籍一覧</h2>
         </div>
+        <p className="books__error-message">{errorMessage}</p>
         <ul className="books-list">
           {books.map((book) => {
             return (

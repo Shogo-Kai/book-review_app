@@ -24,7 +24,7 @@ export const Header = () => {
         <div className="header-contents">
           <UserInfo />
           <div className="header-content">
-            <Link to="" className="header-content__link-edit">
+            <Link to="/profile" className="header-content__link-edit">
               ユーザー名変更
             </Link>
           </div>

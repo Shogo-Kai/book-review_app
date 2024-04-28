@@ -1,14 +1,13 @@
 @charset "utf-8";
-$colors: #555555, #fffdd0, #ff3333;
+$colors: #555555, #ffff88, #ff3333;
 
 .whole {
   background-image: url(../material/アジト.webp);
   background-size: cover;
 }
 
-.books {
+.profile {
   margin: 0 auto;
-  text-align: center;
   color: nth($colors, 2);
 
   &__error-message {
@@ -16,7 +15,19 @@ $colors: #555555, #fffdd0, #ff3333;
   }
 }
 
-.books-footer {
+.profile-edit {
+  &__name {
+    width: 50%;
+    font-size: large;
+  }
+
+  &__button {
+    background-color: #242f9b;
+    color: nth($colors, 2);
+  }
+}
+
+.profile-edit-footer {
   &__transition {
     color: nth($colors, 2);
   }
@@ -24,8 +35,22 @@ $colors: #555555, #fffdd0, #ff3333;
 
 @media screen and (min-width: 1024px) {
   /*　for PC　*/
-  .books {
+  .profile {
     margin: 20px auto;
     width: 500px;
+  }
+  .profile-edit {
+    margin: 25px 0;
+
+    &__name {
+      height: 30px;
+      margin: 25px 0px;
+    }
+
+    &__button {
+      width: 100px;
+      height: 40px;
+      border-radius: 5px;
+    }
   }
 }
