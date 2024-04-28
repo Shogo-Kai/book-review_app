@@ -25,6 +25,10 @@ $colors: #555555, #ffff88, #ff3333;
     background-color: #242f9b;
     color: nth($colors, 2);
   }
+
+  &__error-message {
+    color: nth($colors, 3);
+  }
 }
 
 .profile-edit-footer {

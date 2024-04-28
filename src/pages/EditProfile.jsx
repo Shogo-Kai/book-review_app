@@ -1,21 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
+import { useForm } from 'react-hook-form';
 import { url } from '../const';
 import { useNavigate, Link } from 'react-router-dom';
 import { ModifyHeader } from '../components/ModifyHeader';
 import './editprofile.scss';
 
 export const EditProfile = () => {
-  const [userName, setUserName] = useState('');
   const [errorMessage, setErrorMessage] = useState();
   const [cookies] = useCookies();
   const navigate = useNavigate();
-  const handleNameChange = (e) => setUserName(e.target.value);
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm({ reValidateMode: 'onSubmit', criteriaMode: 'all' });
 
-  const editProfile = () => {
+  const editProfile = (data) => {
     const userInfo = {
-      name: userName,
+      name: data.name,
     };
     axios
       .put(`${url}/users`, userInfo, {
@@ -39,7 +44,7 @@ export const EditProfile = () => {
         },
       })
       .then((res) => {
-        setUserName(res.data.name);
+        setValue('name', res.data.name);
       })
       .catch((err) => {
         setErrorMessage(`ユーザー名の取得に失敗しました。${err}`);
@@ -55,25 +60,24 @@ export const EditProfile = () => {
         </div>
         <p className="profile__error-message">{errorMessage}</p>
 
-        <form className="profile-edit">
+        <form onSubmit={handleSubmit(editProfile)} className="profile-edit">
           <label>ユーザ名</label>
           <br />
           <input
             type="name"
             className="profile-edit__name"
-            onChange={handleNameChange}
-            value={userName}
+            {...register('name', { required: '入力が必須の項目です。' })}
           />
+          {errors.name?.message && (
+            <div className="profile-edit__error-message">
+              {errors.name.message}
+            </div>
+          )}
           <br />
-          <button
-            type="button"
-            className="profile-edit__button"
-            onClick={editProfile}
-          >
+          <button type="submit" className="profile-edit__button">
             編集
           </button>
         </form>
-
         <div className="profile-edit-footer">
           <Link className="profile-edit-footer__transition" to="/">
             書籍一覧
