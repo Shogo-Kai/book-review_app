@@ -24,14 +24,14 @@ export const Header = () => {
         <div className="header-contents">
           <UserInfo />
           <div className="header-content">
+            <Link to="" className="header-content__link-edit">
+              ユーザー名変更
+            </Link>
+          </div>
+          <div className="header-content">
             <button onClick={handleSignOut} className="header-content__button">
               サインアウト
             </button>
-          </div>
-          <div className="header-content">
-            <Link to="" className="header-content__link-edit">
-              ユーザー情報編集
-            </Link>
           </div>
         </div>
       ) : (

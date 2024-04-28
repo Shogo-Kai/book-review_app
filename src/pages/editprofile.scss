@@ -1,0 +1,31 @@
+@charset "utf-8";
+$colors: #555555, #fffdd0, #ff3333;
+
+.whole {
+  background-image: url(../material/アジト.webp);
+  background-size: cover;
+}
+
+.books {
+  margin: 0 auto;
+  text-align: center;
+  color: nth($colors, 2);
+
+  &__error-message {
+    color: nth($colors, 3);
+  }
+}
+
+.books-footer {
+  &__transition {
+    color: nth($colors, 2);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  /*　for PC　*/
+  .books {
+    margin: 20px auto;
+    width: 500px;
+  }
+}

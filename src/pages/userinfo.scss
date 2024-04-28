@@ -2,13 +2,13 @@
 $colors: #ffffff, #ff3333;
 
 .userinfo__error-message {
-    color: nth($colors, 2);
-  }
+  color: nth($colors, 2);
+}
 
 .header-content {
-    &____user-info {
-      font-size: 15px;
-      color: nth($colors, 1);
-      margin-right: 25px;
-    }
+  &____user-info {
+    font-size: 15px;
+    color: nth($colors, 1);
+    margin-right: 25px;
   }
+}
