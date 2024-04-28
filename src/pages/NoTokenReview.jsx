@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
 import axios from 'axios';
-import { Header } from '../components/Header';
+import { NoTokenHeader } from '../components/NoTokenHeader';
 import { Pagination } from '../components/Pagination';
 import { url } from '../const';
-import './review.scss';
+import './notokenreview.scss';
 
-export const Review = () => {
+export const NoTokenReview = () => {
   const [books, setBooks] = useState([]);
   const [errorMessage, setErrorMessage] = useState();
-  const [cookies] = useCookies();
   const [bookOffset, setBookOffset] = useState(0);
 
   const handlePaginate = (selectedPage) => {
@@ -20,11 +17,7 @@ export const Review = () => {
 
   useEffect(() => {
     axios
-      .get(`${url}/books?offset=${bookOffset}`, {
-        headers: {
-          authorization: `Bearer ${cookies.token}`,
-        },
-      })
+      .get(`${url}/public/books?offset=${bookOffset}`)
       .then((res) => {
         setBooks(res.data);
         setErrorMessage(null);
@@ -32,11 +25,11 @@ export const Review = () => {
       .catch((err) => {
         setErrorMessage(`書籍一覧の取得に失敗しました。${err}`);
       });
-  }, [bookOffset, cookies.token]);
+  }, [bookOffset]);
 
   return (
     <div className="whole">
-      <Header />
+      <NoTokenHeader />
       <div className="books">
         <p className="books__error-message">{errorMessage}</p>
         <div className="books-header">
@@ -52,9 +45,6 @@ export const Review = () => {
           })}
         </ul>
         <div className="books-footer">
-          <Link className="books-footer__transition" to="/review/create">
-            書籍レビュー登録
-          </Link>
           <Pagination onPageChange={handlePaginate} />
         </div>
       </div>

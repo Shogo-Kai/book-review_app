@@ -1,7 +1,7 @@
 import React from 'react';
 import { useCookies } from 'react-cookie';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { signOut } from '../authSlice';
 import './header.scss';
 
@@ -18,13 +18,28 @@ export const Header = () => {
 
   return (
     <header className="header">
-      <h1>書籍レビューアプリ</h1>
+      <h1 className="header__title">書籍レビューアプリ</h1>
       {auth ? (
-        <button onClick={handleSignOut} className="sign-out-button">
-          サインアウト
-        </button>
+        <div className="header-contents">
+          <div className="header-content">
+            <button onClick={handleSignOut} className="header-content__button">
+              サインアウト
+            </button>
+          </div>
+          <div className="header-content">
+            <Link to="" className="header-content__link">
+              ユーザー情報編集
+            </Link>
+          </div>
+        </div>
       ) : (
-        <></>
+        <div className="header-contents">
+          <div className="header-content">
+            <Link to="/notoken" className="header-content__link">
+              認証なし
+            </Link>
+          </div>
+        </div>
       )}
     </header>
   );

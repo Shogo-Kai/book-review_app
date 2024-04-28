@@ -1,0 +1,43 @@
+@charset "utf-8";
+$colors: #555555, #fffdd0, #ff3333;
+
+.whole {
+  background-image: url(../material/アジト.webp);
+  background-size: cover;
+}
+
+.books {
+  margin: 0 auto;
+  text-align: center;
+  color: nth($colors, 2);
+
+  &__error-message {
+    color: nth($colors, 3);
+  }
+}
+
+.books-list {
+  width: 100%;
+  font-size: large;
+  list-style: none;
+}
+
+@media screen and (min-width: 1024px) {
+  /*　for PC　*/
+  .books {
+    margin: 20px auto;
+    width: 500px;
+  }
+
+  .books-list {
+    text-align: left;
+    &__info {
+      height: 30px;
+      margin: 25px 0;
+      max-width: 400px; /* ここで要素の幅を設定 */
+      text-overflow: ellipsis; /* はみ出したテキストを省略記号で表示 */
+      overflow: hidden; /* はみ出したテキストを隠す */
+      white-space: nowrap; /* テキストを折り返さない */
+    }
+  }
+}

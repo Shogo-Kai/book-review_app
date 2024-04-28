@@ -1,7 +1,7 @@
 import ReactPaginate from 'react-paginate';
 import './pagination.scss';
 
-export const Pagination = ({onPageChange}) => {
+export const Pagination = ({ onPageChange }) => {
   return (
     <ReactPaginate
       pageCount={10}
