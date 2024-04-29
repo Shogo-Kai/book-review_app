@@ -37,8 +37,13 @@ export const Header = () => {
       ) : (
         <div className="header-contents">
           <div className="header-content">
-            <Link to="/notoken" className="header-content__link-notokenreview">
-              認証なし
+            <Link to="/" className="header-content__link-review">
+              ログイン
+            </Link>
+          </div>
+          <div className="header-content">
+            <Link to="/signin" className="header-content__link-signin">
+              サインアウト
             </Link>
           </div>
         </div>

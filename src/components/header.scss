@@ -14,7 +14,8 @@ $color1: #ffffff;
 .header-content {
   &__link-edit,
   &__button,
-  &__link-notokenreview {
+  &__link-review,
+  &__link-signin {
     font-size: 15px;
     text-decoration: none;
     color: $color1;

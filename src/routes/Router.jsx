@@ -5,7 +5,6 @@ import { Review } from '../pages/Review';
 import { CreateReview } from '../pages/CreateReview';
 import { SignIn } from '../pages/SignIn';
 import { SignUp } from '../pages/SignUp';
-import { NoTokenReview } from '../pages/NoTokenReview';
 import { EditProfile } from '../pages/EditProfile';
 
 export const Router = () => {
@@ -16,10 +15,9 @@ export const Router = () => {
       <Routes>
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/notoken" element={<NoTokenReview />} />
+        <Route path="/" element={<Review />} />
         {auth ? (
           <>
-            <Route path="/" element={<Review />} />
             <Route path="/review/create" element={<CreateReview />} />
             <Route path="/profile" element={<EditProfile />} />
           </>

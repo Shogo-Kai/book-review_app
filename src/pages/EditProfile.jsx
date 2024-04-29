@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { url } from '../const';
 import { useNavigate, Link } from 'react-router-dom';
-import { ModifyHeader } from '../components/ModifyHeader';
+import { Header } from '../components/Header';
 import './editprofile.scss';
 
 export const EditProfile = () => {
@@ -53,7 +53,7 @@ export const EditProfile = () => {
 
   return (
     <div className="whole">
-      <ModifyHeader />
+      <Header />
       <div className="profile">
         <div className="profile-header">
           <h2 className="profile-header__title">変更</h2>

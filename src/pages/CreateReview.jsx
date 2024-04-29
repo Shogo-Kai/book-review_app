@@ -4,7 +4,7 @@ import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import { url } from '../const';
 import { useNavigate, Link } from 'react-router-dom';
-import { ModifyHeader } from '../components/ModifyHeader';
+import { Header } from '../components/Header';
 import './createreview.scss';
 
 export const CreateReview = () => {
@@ -40,8 +40,8 @@ export const CreateReview = () => {
   };
 
   return (
-    <div className='whole'>
-      <ModifyHeader />
+    <div className="whole">
+      <Header />
       <div className="create-review">
         <h2 className="create-review__heading">書籍レビューの登録</h2>
         <p className="create-review__error-message">{errorMessage}</p>

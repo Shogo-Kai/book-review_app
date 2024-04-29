@@ -80,7 +80,7 @@ export const SignIn = () => {
           )}
           <br />
           <button type="submit" className="signin-button">
-            認証
+            ログイン
           </button>
         </form>
         <Link to="/signup" className="link">

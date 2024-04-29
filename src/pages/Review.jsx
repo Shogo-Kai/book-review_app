@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
+import { useSelector } from 'react-redux/es/exports';
 import axios from 'axios';
 import { Header } from '../components/Header';
 import { Pagination } from '../components/Pagination';
@@ -8,6 +9,7 @@ import { url } from '../const';
 import './review.scss';
 
 export const Review = () => {
+  const auth = useSelector((state) => state.auth.isSignIn);
   const [books, setBooks] = useState([]);
   const [errorMessage, setErrorMessage] = useState();
   const [cookies] = useCookies();
@@ -19,20 +21,23 @@ export const Review = () => {
   };
 
   useEffect(() => {
-    axios
-      .get(`${url}/books?offset=${bookOffset}`, {
-        headers: {
-          authorization: `Bearer ${cookies.token}`,
-        },
-      })
-      .then((res) => {
-        setBooks(res.data);
-        setErrorMessage(null);
-      })
-      .catch((err) => {
-        setErrorMessage(`書籍一覧の取得に失敗しました。${err}`);
-      });
-  }, [bookOffset, cookies.token]);
+    const fetchData = () => {
+      const endpoint = auth ? 'books' : 'public/books';
+      const headers = auth ? { authorization: `Bearer ${cookies.token}` } : {};
+
+      axios
+        .get(`${url}/${endpoint}?offset=${bookOffset}`, { headers })
+        .then((res) => {
+          setBooks(res.data);
+          setErrorMessage(null);
+        })
+        .catch((err) => {
+          setErrorMessage(`書籍一覧の取得に失敗しました ${err}`);
+        });
+    };
+
+    fetchData();
+  }, [auth, url, bookOffset, cookies.token]);
 
   return (
     <div className="whole">
@@ -52,9 +57,11 @@ export const Review = () => {
           })}
         </ul>
         <div className="books-footer">
-          <Link className="books-footer__transition" to="/review/create">
-            書籍レビュー登録
-          </Link>
+          {auth && (
+            <Link className="books-footer__transition" to="/review/create">
+              書籍レビュー登録
+            </Link>
+          )}
           <Pagination onPageChange={handlePaginate} />
         </div>
       </div>

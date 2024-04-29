@@ -7,55 +7,55 @@ $colors: #555555, #ffff88, #ff3333;
 }
 
 .create-review {
-    margin: 0 auto;
-    color: nth($colors, 2);
-  
+  margin: 0 auto;
+  color: nth($colors, 2);
+
+  .creat-form {
+    &__title,
+    &__detail,
+    &__url,
+    &__review {
+      width: 100%;
+      font-size: large;
+    }
+
+    &__submit {
+      background-color: #242f9b;
+      color: nth($colors, 2);
+    }
+  }
+
+  &__error-message {
+    color: nth($colors, 3);
+  }
+}
+
+.review-link {
+  color: nth($colors, 2);
+}
+
+@media screen and (min-width: 1024px) {
+  /*　for PC　*/
+  .create-review {
+    margin: 35px auto;
+    width: 500px;
+
     .creat-form {
-        &__title,
-        &__detail,
-        &__url,
-        &__review {
-        width: 100%;
-        font-size: large;
+      margin: 25px 0;
+
+      &__title,
+      &__detail,
+      &__url,
+      &__review {
+        height: 30px;
+        margin-bottom: 25px;
       }
-  
+
       &__submit {
-        background-color: #242f9b;
-        color: nth($colors, 2);
-      }
-    }
-  
-    &__error-message {
-      color: nth($colors, 3);
-    }
-  }
-
-  .review-link {
-    color: nth($colors, 2);
-  }
-
-  @media screen and (min-width: 1024px) {
-    /*　for PC　*/
-    .create-review {
-      margin: 35px auto;
-      width: 500px;
-  
-      .creat-form {
-        margin: 25px 0;
-  
-        &__title,
-        &__detail,
-        &__url,
-        &__review {
-          height: 30px;
-          margin-bottom: 25px;
-        }
-  
-        &__submit {
-          width: 100px;
-          height: 40px;
-          border-radius: 5px;
-        }
+        width: 100px;
+        height: 40px;
+        border-radius: 5px;
       }
     }
   }
+}
