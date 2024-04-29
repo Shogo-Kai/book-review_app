@@ -75,7 +75,7 @@ export const EditProfile = () => {
           )}
           <br />
           <button type="submit" className="profile-edit__button">
-            編集
+            変更
           </button>
         </form>
         <div className="profile-edit-footer">
