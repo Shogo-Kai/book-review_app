@@ -22,6 +22,11 @@ $colors: #555555, #fffdd0, #ff3333;
   list-style: none;
 }
 
+.transition {
+  text-decoration: none;
+  color: nth($colors, 2);
+}
+
 .books-footer {
   &__transition {
     color: nth($colors, 2);

@@ -15,6 +15,25 @@ export const Review = () => {
   const [cookies] = useCookies();
   const [bookOffset, setBookOffset] = useState(0);
 
+  const sendLog = (bookId) => {
+    const bookInfo = {
+      selectBookId: bookId,
+    };
+    console.log(bookId);
+    axios
+      .post(`${url}/logs`, bookInfo, {
+        headers: {
+          authorization: `Bearer ${cookies.token}`,
+        },
+      })
+      .then(() => {
+        console.log(`ログの送信に成功しました。`);
+      })
+      .catch((err) => {
+        console.log(`ログの送信に失敗しました。 ${err}`);
+      });
+  };
+
   const handlePaginate = (selectedPage) => {
     const newOffset = selectedPage.selected * 10;
     setBookOffset(newOffset);
@@ -51,7 +70,13 @@ export const Review = () => {
           {books.map((book) => {
             return (
               <li key={book.id} className="books-list__info" tabIndex="0">
-                {book.title}
+                <Link
+                  className="transition"
+                  to={`/detail/${book.id}`}
+                  onClick={() => sendLog(book.id)}
+                >
+                  {book.title}
+                </Link>
               </li>
             );
           })}
