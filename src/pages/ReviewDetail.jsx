@@ -3,6 +3,7 @@ import { useNavigate, useParams, Link } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import { Audio } from 'react-loader-spinner';
 import { Header } from '../components/Header';
 import { url } from '../const';
 import './reviewdetail.scss';
@@ -54,7 +55,7 @@ export const ReviewDetail = () => {
       review: data.review,
     };
     axios
-      .put(`${url}/books/${id}`, bookInfo,  { headers })
+      .put(`${url}/books/${id}`, bookInfo, { headers })
       .then(() => {
         navigate('/');
       })
@@ -70,8 +71,7 @@ export const ReviewDetail = () => {
         setReviewer(res.data.reviewer);
         updateFields(res.data);
         setIsLoading(false);
-        return axios.get(`${url}/users`, { headers })
-        .then((res) => {
+        return axios.get(`${url}/users`, { headers }).then((res) => {
           setName(res.data.name);
         });
       })
@@ -83,80 +83,96 @@ export const ReviewDetail = () => {
   return (
     <div className="whole">
       <Header />
-      {isLoading ? <div>
-    
-  </div> : (
-      <div className="create-review">
-        <h2 className="create-review__heading">レビュー詳細</h2>
-        <p className="create-review__error-message">{errorMessage}</p>
-        <form onSubmit={handleSubmit(edit)} className="creat-form">
-          <label className="creat-form__label" htmlFor="title">
-            タイトル
-          </label>
-          <br />
-          <input
-            type="title"
-            id="title"
-            className="creat-form__title"
-            {...register('title', { required: '入力が必須の項目です。' })}
-          />
-          {errors.title?.message && (
-            <div className="error-message">{errors.title?.message}</div>
-          )}
-          <br />
-          <label className="creat-form__label" htmlFor="detail">
-            詳細
-          </label>
-          <br />
-          <input
-            type="detail"
-            id="detail"
-            className="creat-form__detail"
-            {...register('detail', { required: '入力が必須の項目です。' })}
-          />
-          {errors.detail?.message && (
-            <div className="error-message">{errors.detail?.message}</div>
-          )}
-          <br />
-          <label className="creat-form__label" htmlFor="url">
-            URL
-          </label>
-          <br />
-          <input
-            type="url"
-            id="url"
-            className="creat-form__url"
-            {...register('url', { required: '入力が必須の項目です。' })}
-          />
-          {errors.url?.message && (
-            <div className="error-message">{errors.url?.message}</div>
-          )}
-          <br />
-          <label className="creat-form__label" htmlFor="review">
-            レビュー
-          </label>
-          <br />
-          <input
-            type="review"
-            id="review"
-            className="creat-form__review"
-            {...register('review', { required: '入力が必須の項目です。' })}
-          />
-          {errors.review?.message && (
-            <div className="error-message">{errors.review?.message}</div>
-          )}
-          <br />
-          {valuesMatch && <><button type="submit" className="creat-form__submit">
-            編集
-          </button>
-          <button type="button" className="creat-form__submit" onClick={erase}>
-            削除
-          </button></>}
-        </form>
-        <Link to="/" className="review-link">
-          書籍一覧
-        </Link>
-      </div>
+      {isLoading ? (
+        <Audio
+          height="100"
+          width="100"
+          color="#4fa94d"
+          ariaLabel="audio-loading"
+          wrapperStyle={{}}
+          wrapperClass="wrapper-class"
+          visible={true}
+        />
+      ) : (
+        <div className="create-review">
+          <h2 className="create-review__heading">レビュー詳細</h2>
+          <p className="create-review__error-message">{errorMessage}</p>
+          <form onSubmit={handleSubmit(edit)} className="creat-form">
+            <label className="creat-form__label" htmlFor="title">
+              タイトル
+            </label>
+            <br />
+            <input
+              type="title"
+              id="title"
+              className="creat-form__title"
+              {...register('title', { required: '入力が必須の項目です。' })}
+            />
+            {errors.title?.message && (
+              <div className="error-message">{errors.title?.message}</div>
+            )}
+            <br />
+            <label className="creat-form__label" htmlFor="detail">
+              詳細
+            </label>
+            <br />
+            <input
+              type="detail"
+              id="detail"
+              className="creat-form__detail"
+              {...register('detail', { required: '入力が必須の項目です。' })}
+            />
+            {errors.detail?.message && (
+              <div className="error-message">{errors.detail?.message}</div>
+            )}
+            <br />
+            <label className="creat-form__label" htmlFor="url">
+              URL
+            </label>
+            <br />
+            <input
+              type="url"
+              id="url"
+              className="creat-form__url"
+              {...register('url', { required: '入力が必須の項目です。' })}
+            />
+            {errors.url?.message && (
+              <div className="error-message">{errors.url?.message}</div>
+            )}
+            <br />
+            <label className="creat-form__label" htmlFor="review">
+              レビュー
+            </label>
+            <br />
+            <input
+              type="review"
+              id="review"
+              className="creat-form__review"
+              {...register('review', { required: '入力が必須の項目です。' })}
+            />
+            {errors.review?.message && (
+              <div className="error-message">{errors.review?.message}</div>
+            )}
+            <br />
+            {valuesMatch && (
+              <>
+                <button type="submit" className="creat-form__submit">
+                  編集
+                </button>
+                <button
+                  type="button"
+                  className="creat-form__submit"
+                  onClick={erase}
+                >
+                  削除
+                </button>
+              </>
+            )}
+          </form>
+          <Link to="/" className="review-link">
+            書籍一覧
+          </Link>
+        </div>
       )}
     </div>
   );
