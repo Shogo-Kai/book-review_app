@@ -19,7 +19,6 @@ export const Review = () => {
     const bookInfo = {
       selectBookId: bookId,
     };
-    console.log(bookId);
     axios
       .post(`${url}/logs`, bookInfo, {
         headers: {
@@ -51,7 +50,7 @@ export const Review = () => {
           setErrorMessage(null);
         })
         .catch((err) => {
-          setErrorMessage(`書籍一覧の取得に失敗しました ${err}`);
+          setErrorMessage(`書籍一覧の取得に失敗しました。 ${err}`);
         });
     };
 
