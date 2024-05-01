@@ -94,74 +94,77 @@ export const ReviewDetail = () => {
           visible={true}
         />
       ) : (
-        <div className="create-review">
-          <h2 className="create-review__heading">レビュー詳細</h2>
-          <p className="create-review__error-message">{errorMessage}</p>
-          <form onSubmit={handleSubmit(edit)} className="creat-form">
-            <label className="creat-form__label" htmlFor="title">
+        <div className="review-detail">
+          <h2 className="review-detail__heading">レビュー詳細</h2>
+          <p className="review-detail__error-message">{errorMessage}</p>
+          <form onSubmit={handleSubmit(edit)} className="review-form">
+            <label className="review-form__label" htmlFor="title">
               タイトル
             </label>
             <br />
             <input
               type="title"
               id="title"
-              className="creat-form__title"
+              className="review-form__title"
               {...register('title', { required: '入力が必須の項目です。' })}
             />
             {errors.title?.message && (
               <div className="error-message">{errors.title?.message}</div>
             )}
             <br />
-            <label className="creat-form__label" htmlFor="detail">
-              詳細
-            </label>
-            <br />
-            <input
-              type="detail"
-              id="detail"
-              className="creat-form__detail"
-              {...register('detail', { required: '入力が必須の項目です。' })}
-            />
-            {errors.detail?.message && (
-              <div className="error-message">{errors.detail?.message}</div>
-            )}
-            <br />
-            <label className="creat-form__label" htmlFor="url">
+            <label className="review-form__label" htmlFor="url">
               URL
             </label>
             <br />
             <input
               type="url"
               id="url"
-              className="creat-form__url"
+              className="review-form__url"
               {...register('url', { required: '入力が必須の項目です。' })}
             />
             {errors.url?.message && (
               <div className="error-message">{errors.url?.message}</div>
             )}
+
             <br />
-            <label className="creat-form__label" htmlFor="review">
+            <label className="review-form__label" htmlFor="detail">
+              詳細
+            </label>
+            <br />
+            <textarea
+              type="detail"
+              id="detail"
+              className="review-form__detail"
+              {...register('detail', { required: '入力が必須の項目です。' })}
+            />
+            {errors.detail?.message && (
+              <div className="error-message">{errors.detail?.message}</div>
+            )}
+
+            <br />
+            <label className="review-form__label" htmlFor="review">
               レビュー
             </label>
             <br />
-            <input
+            <textarea
               type="review"
               id="review"
-              className="creat-form__review"
+              className="review-form__review"
               {...register('review', { required: '入力が必須の項目です。' })}
             />
             {errors.review?.message && (
               <div className="error-message">{errors.review?.message}</div>
             )}
             <br />
+
             {valuesMatch && (
               <>
-                <button type="submit" className="creat-form__submit">
+                <button type="submit" className="review-form__submit">
                   編集
                 </button>
                 <button
                   type="button"
-                  className="creat-form__submit"
+                  className="review-form__button"
                   onClick={erase}
                 >
                   削除

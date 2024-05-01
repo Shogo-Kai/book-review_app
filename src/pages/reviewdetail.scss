@@ -6,11 +6,11 @@ $colors: #555555, #ffff88, #ff3333;
   background-size: cover;
 }
 
-.create-review {
+.review-detail {
   margin: 0 auto;
   color: nth($colors, 2);
 
-  .creat-form {
+  .review-form {
     &__title,
     &__detail,
     &__url,
@@ -19,7 +19,13 @@ $colors: #555555, #ffff88, #ff3333;
       font-size: large;
     }
 
-    &__submit {
+    &__detail,
+    &__review {
+      resize: none;
+    }
+
+    &__submit,
+    &__button {
       background-color: #242f9b;
       color: nth($colors, 2);
     }
@@ -36,25 +42,33 @@ $colors: #555555, #ffff88, #ff3333;
 
 @media screen and (min-width: 1024px) {
   /*　for PC　*/
-  .create-review {
+  .review-detail {
     margin: 35px auto;
     width: 500px;
 
-    .creat-form {
+    .review-form {
       margin: 25px 0;
 
       &__title,
-      &__detail,
-      &__url,
-      &__review {
+      &__url {
         height: 30px;
         margin-bottom: 25px;
       }
 
-      &__submit {
+      &__detail,
+      &__review {
+        height: 100px;
+        margin-bottom: 25px;
+      }
+
+      &__submit,
+      &__button {
         width: 100px;
         height: 40px;
         border-radius: 5px;
+      }
+      &__button {
+        margin-left: 25px;
       }
     }
   }
