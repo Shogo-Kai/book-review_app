@@ -15,8 +15,8 @@ export const ReviewDetail = () => {
   const [cookies] = useCookies();
   const headers = { authorization: `Bearer ${cookies.token}` };
   const [errorMessage, setErrorMessage] = useState();
-  const [reviewer, setReviewer] = useState();
-  const [name, setName] = useState();
+  const [reviewer, setReviewer] = useState('A');
+  const [name, setName] = useState('B');
   const valuesMatch = reviewer === name;
   const {
     register,
