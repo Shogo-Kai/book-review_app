@@ -43,9 +43,12 @@ export const SignIn = () => {
         <h2>サインイン</h2>
         <p className="error-message">{errorMessage}</p>
         <form onSubmit={handleSubmit(onSignIn)} className="signin-form">
-          <label className="email-label">メールアドレス</label>
+          <label htmlFor="email" className="email-label">
+            メールアドレス
+          </label>
           <br />
           <input
+            id="email"
             type="email"
             className="email-input"
             {...register('email', { required: '入力が必須の項目です。' })}
@@ -54,9 +57,12 @@ export const SignIn = () => {
             <div className="error-message">{errors.email?.message}</div>
           )}
           <br />
-          <label className="password-label">パスワード</label>
+          <label htmlFor="password" className="password-label">
+            パスワード
+          </label>
           <br />
           <input
+            id="password"
             type="password"
             className="password-input"
             {...register('password', {

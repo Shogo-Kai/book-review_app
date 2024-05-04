@@ -16,8 +16,7 @@ export const ReviewDetail = () => {
   const headers = { authorization: `Bearer ${cookies.token}` };
   const [errorMessage, setErrorMessage] = useState();
   const [mine, setMine] = useState(false);
-  
-  
+
   const {
     register,
     handleSubmit,
