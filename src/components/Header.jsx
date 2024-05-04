@@ -38,12 +38,12 @@ export const Header = () => {
         <div className="header-contents">
           <div className="header-content">
             <Link to="/" className="header-content__link-review">
-              ログイン
+              書籍一覧
             </Link>
           </div>
           <div className="header-content">
             <Link to="/signin" className="header-content__link-signin">
-              サインアウト
+              ログイン
             </Link>
           </div>
         </div>

@@ -15,9 +15,9 @@ export const ReviewDetail = () => {
   const [cookies] = useCookies();
   const headers = { authorization: `Bearer ${cookies.token}` };
   const [errorMessage, setErrorMessage] = useState();
-  const [reviewer, setReviewer] = useState('A');
-  const [name, setName] = useState('B');
-  const valuesMatch = reviewer === name;
+  const [mine, setMine] = useState(false);
+  
+  
   const {
     register,
     handleSubmit,
@@ -68,12 +68,9 @@ export const ReviewDetail = () => {
     axios
       .get(`${url}/books/${id}`, { headers })
       .then((res) => {
-        setReviewer(res.data.reviewer);
+        setMine(res.data.isMine);
         updateFields(res.data);
         setIsLoading(false);
-        return axios.get(`${url}/users`, { headers }).then((res) => {
-          setName(res.data.name);
-        });
       })
       .catch((err) => {
         setErrorMessage(`書籍情報、ユーザ名の取得に失敗しました。 ${err}`);
@@ -157,7 +154,7 @@ export const ReviewDetail = () => {
             )}
             <br />
 
-            {valuesMatch && (
+            {mine && (
               <>
                 <button type="submit" className="review-form__submit">
                   編集
@@ -165,7 +162,7 @@ export const ReviewDetail = () => {
                 <button
                   type="button"
                   className="review-form__button"
-                  onClick={erase}
+                  onClick={() => erase()}
                 >
                   削除
                 </button>
