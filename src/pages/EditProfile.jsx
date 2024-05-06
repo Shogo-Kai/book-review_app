@@ -61,9 +61,10 @@ export const EditProfile = () => {
         <p className="profile__error-message">{errorMessage}</p>
 
         <form onSubmit={handleSubmit(editProfile)} className="profile-edit">
-          <label>ユーザ名</label>
+          <label htmlFor='name'>ユーザ名</label>
           <br />
           <input
+            id='name'
             type="name"
             className="profile-edit__name"
             {...register('name', { required: '入力が必須の項目です。' })}
