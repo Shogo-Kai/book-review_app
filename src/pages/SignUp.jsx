@@ -72,9 +72,10 @@ export const SignUp = () => {
         <h2>ユーザー登録</h2>
         <p className="error-message">{errorMessage}</p>
         <form onSubmit={handleSubmit(onSignUp)} className="signup-form">
-          <label>ユーザ名</label>
+          <label htmlFor='name'>ユーザ名</label>
           <br />
           <input
+            id='name'
             type="name"
             className="name-input"
             {...register('name', { required: '入力が必須の項目です。' })}
@@ -83,9 +84,10 @@ export const SignUp = () => {
             <div className="error-message">{errors.name.message}</div>
           )}
           <br />
-          <label>ユーザアイコン</label>
+          <label htmlFor='file'>ユーザアイコン</label>
           <br />
           <input
+            id='file'
             type="file"
             accept=".jpg, .png"
             className="file-input"
@@ -96,9 +98,10 @@ export const SignUp = () => {
             <div className="error-message">{errors.file.message}</div>
           )}
           <br />
-          <label>メールアドレス</label>
+          <label htmlFor='email'>メールアドレス</label>
           <br />
           <input
+            id='email'
             type="email"
             className="email-input"
             {...register('email', { required: '入力が必須の項目です。' })}
@@ -107,9 +110,10 @@ export const SignUp = () => {
             <div className="error-message">{errors.email.message}</div>
           )}
           <br />
-          <label>パスワード</label>
+          <label htmlFor='password'>パスワード</label>
           <br />
           <input
+            id='password'
             type="password"
             className="password-input"
             {...register('password', {
